@@ -1,0 +1,16 @@
+{
+    "name": "sean/activity-3",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Sean\\Activity3\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "pejisean",
+            "email": "202311735@fit.edu.ph"
+        }
+    ],
+    "require": {}
+}
