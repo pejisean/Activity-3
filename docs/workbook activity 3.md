@@ -113,7 +113,7 @@ Task:
 Create more tables for the following
 - [x] Meeting
 - [x] Project ↔ User assignments
-- [ ] Tasks
+- [x] Tasks
 
 Just Copy the following for the `project_users.model.sql`
 ```sql
