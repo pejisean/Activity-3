@@ -24,7 +24,7 @@
     ];
 
     foreach ($sqlFiles as $file) {
-        echo "Applying schema from {$file}...<br>";
+        echo "Applying schema from {$file}...\n";
 
         $sql = file_get_contents($file);
         if ($sql === false) {
@@ -32,18 +32,18 @@
         }
 
         $pdo->exec($sql);
-        echo "Schema applied successfully from {$file}<br>";
+        echo "Schema applied successfully from {$file}\n";
     }
 
     // Truncating tables
     $tables = ['meeting', 'project_users', 'tasks'];
 
-    echo "Truncating tables…<br>";
+    echo "Truncating tables…\n";
 
     foreach ($tables as $table) {
         $pdo->exec("TRUNCATE TABLE public.\"$table\" RESTART IDENTITY CASCADE;");
-        echo "Truncated table: $table<br>";
+        echo "Truncated table: $table\n";
     }
 
-    echo "Database reset completed successfully.<br>";
+    echo "Database reset completed successfully.\n";
 ?>

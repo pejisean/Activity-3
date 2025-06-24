@@ -1,8 +1,8 @@
 <?php
     require_once BASE_PATH . '/handlers/mongodbChecker.handler.php';
     require_once BASE_PATH . '/handlers/postgreChecker.handler.php';
-
-    require_once UTILS_PATH . 'dbResetPostgresql.util.php'
+ 
+//    require_once UTILS_PATH . 'dbResetPostgresql.util.php'
 // // Load .env variables
 // require_once BASE_PATH . '/bootstrap.php'; 
 // require_once BASE_PATH . '/vendor/autoload.php';
