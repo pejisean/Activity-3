@@ -2,6 +2,13 @@
 session_start();
 require 'bootstrap.php';
 
+// Debug: Show session for troubleshooting
+if (isset($_GET['debug'])) {
+    echo '<pre>';
+    print_r($_SESSION);
+    echo '</pre>';
+}
+
 // Redirect if already logged in
 if (isset($_SESSION['user_id'])) {
     header('Location: /pages/dashboard/index.php');

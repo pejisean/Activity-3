@@ -1,4 +1,5 @@
 <?php
+session_start();
     require_once BASE_PATH . '/handlers/mongodbChecker.handler.php';
     require_once BASE_PATH . '/handlers/postgreChecker.handler.php';
     // Load .env variables
@@ -41,5 +42,9 @@
         echo "Environment variable validation failed: " . $e->getMessage() . "<br>";
     } catch (Exception $e) {
         echo "An unexpected error occurred: " . $e->getMessage() . "<br>";
+    }
+
+    if (isset($_GET['success'])) {
+        echo '<div style="background: #d1fae5; color: #065f46; padding: 1em; margin-bottom: 1em; border-radius: 5px;">Login successful!</div>';
     }
 ?>

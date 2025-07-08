@@ -68,8 +68,8 @@ try {
 
     error_log("User {$username} authenticated successfully.");
 
-    // Redirect to dashboard
-    header('Location: /pages/dashboard/index.php');
+    // Redirect to dashboard (add ?success=1 for debugging)
+    header('Location: /pages/dashboard/index.php?success=1');
     exit;
 
 } catch (PDOException $e) {
