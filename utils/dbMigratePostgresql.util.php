@@ -29,10 +29,9 @@ $pdo = new PDO($dsn, $pgConfig['pg_user'], $pgConfig['pg_pass'], [
 echo "🧹 Dropping old tables…\n";
 
 $tablesToDrop = [
-    'meeting_users',
+    'project_users',
     'tasks',
-    'meetings',
-    'users',
+    'meetings'
 ];
 
 foreach ($tablesToDrop as $table) {
@@ -42,10 +41,9 @@ foreach ($tablesToDrop as $table) {
 
 // Migrate new tables
 $modelFiles = [
-    'database/users.model.sql',
-    'database/meetings.model.sql',
+    'database/project_users.model.sql',
+    'database/meeting.model.sql',
     'database/tasks.model.sql',
-    'database/meeting_users.model.sql',
 ];
 
 foreach ($modelFiles as $modelFile) {
