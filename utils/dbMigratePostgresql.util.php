@@ -23,7 +23,8 @@ $tablesToDrop = [
     'project_users',
     'tasks',
     'meeting',
-    'projects'
+    'projects',
+    'users'
 ];
 
 foreach ($tablesToDrop as $table) {
@@ -34,6 +35,7 @@ foreach ($tablesToDrop as $table) {
 // Migrate new tables
 $modelFiles = [
     'database/projects.model.sql',
+    'database/users.model.sql',
     'database/project_users.model.sql',
     'database/meeting.model.sql',
     'database/tasks.model.sql',
