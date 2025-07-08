@@ -3,11 +3,10 @@ session_start();
 
 // Redirect if already logged in
 if (isset($_SESSION['user_id'])) {
-    header('Location: dashboard.php'); // or your protected page
+    header('Location: /pages/dashboard/index.php');
     exit;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +19,7 @@ if (isset($_SESSION['user_id'])) {
     <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h1 class="text-2xl font-bold mb-6 text-center">Login</h1>
 
+        <!-- Inline error message (optional) -->
         <?php if (isset($_GET['error'])): ?>
             <div class="mb-4 p-3 bg-red-100 text-red-700 rounded">
                 <?= htmlspecialchars($_GET['error']) ?>
@@ -57,6 +57,12 @@ if (isset($_SESSION['user_id'])) {
             </button>
         </form>
     </div>
+
+    <!-- Popup alert for error messages -->
+    <?php if (isset($_GET['error'])): ?>
+        <script>
+            alert(<?= json_encode($_GET['error']) ?>);
+        </script>
+    <?php endif; ?>
 </body>
 </html>
-
