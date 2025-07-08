@@ -22,7 +22,7 @@ echo "Dropping old tables…\n";
 $tablesToDrop = [
     'project_users',
     'tasks',
-    'meetings'
+    'meeting'
 ];
 
 foreach ($tablesToDrop as $table) {
