@@ -1,11 +1,11 @@
 <?php
 require_once UTILS_PATH . 'envSetter.util.php';
 // Fetch environment variables with defaults
-$mongoHost = getenv('MONGO_HOST') ?: 'host.docker.internal';
-$mongoPort = getenv('MONGO_PORT') ?: '23567';
+$mongoHost = getenv('MONGO_HOST');
+$mongoPort = getenv('MONGO_PORT');
 $mongoUser = getenv('MONGO_USER');
 $mongoPass = getenv('MONGO_PASS');
-$mongoDb   = getenv('MONGO_DB') ?: 'admin';
+$mongoDb   = getenv('MONGO_DB');
 
 // Build MongoDB connection string
 if ($mongoUser && $mongoPass) {
