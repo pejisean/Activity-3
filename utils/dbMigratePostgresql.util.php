@@ -26,7 +26,7 @@ $pdo = new PDO($dsn, $pgConfig['pg_user'], $pgConfig['pg_pass'], [
 ]);
 
 // Drop old tables first
-echo "🧹 Dropping old tables…\n";
+echo "Dropping old tables…\n";
 
 $tablesToDrop = [
     'project_users',
