@@ -2,7 +2,7 @@
 declare(strict_types=1);
 session_start();
 
-// Enable full error reporting for debugging (remove or disable in production)
+// Enable error reporting for debugging (disable in production)
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
@@ -19,51 +19,51 @@ try {
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     ]);
 } catch (PDOException $e) {
-    // Log and display connection error
     error_log("Database connection failed: " . $e->getMessage());
-    die("Database connection error. Please check logs.");
+    header('Location: login.php?error=' . urlencode('Database connection error.'));
+    exit;
 }
 
-// Check request method and inputs
+// Validate request method and inputs
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    die("Invalid request method. Please submit the form.");
+    header('Location: login.php?error=' . urlencode('Invalid request method.'));
+    exit;
 }
 
 if (empty($_POST['username']) || empty($_POST['password'])) {
-    die("Please fill in both username and password.");
+    header('Location: login.php?error=' . urlencode('Please fill in both username and password.'));
+    exit;
 }
 
 $username = trim($_POST['username']);
 $password = $_POST['password'];
 
-// Debug: show received input (avoid printing password in real debug)
+// Log login attempt for debugging (remove in production)
 error_log("Login attempt for username: {$username}");
 
 try {
-    // Prepare and execute query
     $stmt = $pdo->prepare('SELECT id, password_hash FROM users WHERE username = :username');
     $stmt->execute([':username' => $username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Debug: output fetched user data (without password_hash)
     error_log('User fetched: ' . ($user ? 'YES' : 'NO'));
 
     if (!$user) {
-        die("Invalid username or password.");
+        header('Location: login.php?error=' . urlencode('User does not exist.'));
+        exit;
     }
 
-    // Verify password
     if (!password_verify($password, $user['password_hash'])) {
-        die("Invalid username or password.");
+        header('Location: login.php?error=' . urlencode('Incorrect password.'));
+        exit;
     }
 
-    // Authentication successful: create session token
+    // Authentication successful
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['username'] = $username;
     $_SESSION['token'] = bin2hex(random_bytes(32)); // CSRF/session token
 
-    // Debug: confirm session creation
-    error_log("User {$username} authenticated successfully. Session started.");
+    error_log("User {$username} authenticated successfully.");
 
     // Redirect to dashboard
     header('Location: /pages/dashboard/index.php');
@@ -71,5 +71,6 @@ try {
 
 } catch (PDOException $e) {
     error_log("Database query error: " . $e->getMessage());
-    die("Server error. Please try again later.");
+    header('Location: login.php?error=' . urlencode('Server error. Please try again later.'));
+    exit;
 }
