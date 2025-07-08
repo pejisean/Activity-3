@@ -44,9 +44,12 @@ try {
     $_SESSION['username'] = $username;
     $_SESSION['token'] = bin2hex(random_bytes(32)); // CSRF/session token
 
-    // Redirect to protected page
-    header('Location: pages/dashboard/index.php');
+    // Redirect to protected dashboard page
+    echo http_response_code(302);
+    error_log("Redirecting user {$username} to /pages/dashboard/index.php");
+    header('Location: /pages/dashboard/index.php');
     exit;
+
 
 } catch (PDOException $e) {
     // Log error in real app, show generic error here
