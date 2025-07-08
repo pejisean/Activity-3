@@ -2,13 +2,6 @@
 session_start();
 require 'bootstrap.php';
 
-// Debug: Show session for troubleshooting
-if (isset($_GET['debug'])) {
-    echo '<pre>';
-    print_r($_SESSION);
-    echo '</pre>';
-}
-
 // Redirect if already logged in
 if (isset($_SESSION['user_id'])) {
     header('Location: /pages/dashboard/index.php');
@@ -27,7 +20,6 @@ if (isset($_SESSION['user_id'])) {
     <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h1 class="text-2xl font-bold mb-6 text-center">Login</h1>
 
-        <!-- Inline error message (optional) -->
         <?php if (isset($_GET['error'])): ?>
             <div class="mb-4 p-3 bg-red-100 text-red-700 rounded">
                 <?= htmlspecialchars($_GET['error']) ?>
@@ -45,7 +37,6 @@ if (isset($_SESSION['user_id'])) {
                     class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
             </div>
-
             <div>
                 <label for="password" class="block mb-2 font-medium text-gray-700">Password</label>
                 <input
@@ -56,7 +47,6 @@ if (isset($_SESSION['user_id'])) {
                     class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
             </div>
-
             <button
                 type="submit"
                 class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
@@ -65,12 +55,5 @@ if (isset($_SESSION['user_id'])) {
             </button>
         </form>
     </div>
-
-    <!-- Popup alert for error messages -->
-    <?php if (isset($_GET['error'])): ?>
-        <script>
-            alert(<?= json_encode($_GET['error']) ?>);
-        </script>
-    <?php endif; ?>
 </body>
 </html>
