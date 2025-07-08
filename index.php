@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'bootstrap.php';
+
 
 // Redirect if already logged in
 if (isset($_SESSION['user_id'])) {
