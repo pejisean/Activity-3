@@ -1,6 +1,9 @@
 <?php
+
 declare(strict_types=1);
 session_start();
+
+file_put_contents(__DIR__ . '/auth_debug.log', "auth.util.php called at " . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
 
 // Enable error reporting for debugging (disable in production)
 ini_set('display_errors', '1');
