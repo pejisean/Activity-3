@@ -1,5 +1,6 @@
 <?php
 session_start();
+require 'bootstrap.php';
 
 // Redirect if already logged in
 if (isset($_SESSION['user_id'])) {
@@ -26,7 +27,7 @@ if (isset($_SESSION['user_id'])) {
             </div>
         <?php endif; ?>
 
-        <form action="auth.util.php" method="POST" class="space-y-6">
+        <form action="utils/auth.util.php" method="POST" class="space-y-6">
             <div>
                 <label for="username" class="block mb-2 font-medium text-gray-700">Username</label>
                 <input
