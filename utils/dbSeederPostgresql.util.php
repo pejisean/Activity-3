@@ -42,7 +42,7 @@
 
     // Define mapping of tables to their static data files (PHP files returning arrays)
     $seedFiles = [
-        'user' => DUMMIES_PATH . 'user.staticDatas.php',
+        'users' => DUMMIES_PATH . 'users.staticDatas.php',
     ];
 
     // Loop over each table and seed data
