@@ -18,6 +18,6 @@
     "scripts": {
         "start": "php -S localhost:8000 router.php",
         "postgresql:reset": "docker compose exec weather-app php utils/dbResetPostgresql.util.php",
-        "postgresql:seed": "docker compose exec weather-app php utils/dbSeederPostgres.util.php"
+        "postgresql:seed": "docker compose exec weather-app php utils/dbSeederPostgresql.util.php"
     }
 }
