@@ -23,18 +23,18 @@ try {
     ]);
 } catch (PDOException $e) {
     error_log("Database connection failed: " . $e->getMessage());
-    header('Location: login.php?error=' . urlencode('Database connection error.'));
+    header('Location: index.php?error=' . urlencode('Database connection error.'));
     exit;
 }
 
 // Validate request method and inputs
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: login.php?error=' . urlencode('Invalid request method.'));
+    header('Location: index.php?error=' . urlencode('Invalid request method.'));
     exit;
 }
 
 if (empty($_POST['username']) || empty($_POST['password'])) {
-    header('Location: login.php?error=' . urlencode('Please fill in both username and password.'));
+    header('Location: index.php?error=' . urlencode('Please fill in both username and password.'));
     exit;
 }
 
@@ -52,12 +52,12 @@ try {
     error_log('User fetched: ' . ($user ? 'YES' : 'NO'));
 
     if (!$user) {
-        header('Location: login.php?error=' . urlencode('User does not exist.'));
+        header('Location: index.php?error=' . urlencode('User does not exist.'));
         exit;
     }
 
     if (!password_verify($password, $user['password_hash'])) {
-        header('Location: login.php?error=' . urlencode('Incorrect password.'));
+        header('Location: index.php?error=' . urlencode('Incorrect password.'));
         exit;
     }
 
@@ -74,6 +74,6 @@ try {
 
 } catch (PDOException $e) {
     error_log("Database query error: " . $e->getMessage());
-    header('Location: login.php?error=' . urlencode('Server error. Please try again later.'));
+    header('Location: index.php?error=' . urlencode('Server error. Please try again later.'));
     exit;
 }
