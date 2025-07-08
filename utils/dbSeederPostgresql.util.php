@@ -21,6 +21,8 @@
         'database/meeting.model.sql',
         'database/project_users.model.sql',
         'database/tasks.model.sql',
+        'database/users.model.sql',
+        'database/projects.model.sql'
     ];
 
     foreach ($sqlFiles as $file) {
