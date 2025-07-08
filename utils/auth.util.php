@@ -3,15 +3,14 @@
 declare(strict_types=1);
 session_start();
 
-file_put_contents(__DIR__ . '/auth_debug.log', "auth.util.php called at " . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
 
 // Enable error reporting for debugging (disable in production)
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-require_once BASE_PATH .'vendor/autoload.php';
-require_once BASE_PATH .'bootstrap.php';
+require_once BASE_PATH . '/vendor/autoload.php';
+require_once BASE_PATH . '/bootstrap.php';
 require_once UTILS_PATH . 'envSetter.util.php';
 
 // PostgreSQL config assumed set in $pgConfig
