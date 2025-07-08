@@ -10,15 +10,6 @@ require 'bootstrap.php';
 // 3) envSetter
 require_once UTILS_PATH . 'envSetter.util.php';
 
-// PostgreSQL configuration from environment variables
-$pgConfig = [
-    'pg_host' => $_ENV['PG_HOST'],
-    'pg_port' => $_ENV['PG_PORT'],
-    'pg_db'   => $_ENV['PG_DB'],
-    'pg_user' => $_ENV['PG_USER'],
-    'pg_pass' => $_ENV['PG_PASS'],
-];
-
 // ——— Connecting to PostgreSQL ———
 $dsn = "pgsql:host={$pgConfig['pg_host']};port={$pgConfig['pg_port']};dbname={$pgConfig['pg_db']}";
 $pdo = new PDO($dsn, $pgConfig['pg_user'], $pgConfig['pg_pass'], [
